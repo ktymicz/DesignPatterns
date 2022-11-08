@@ -27,6 +27,18 @@
     <ClCompile Include="smartBird.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Observer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ptrptr_type.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TheFactoryPattern.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WeatherData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bird.h">
@@ -36,6 +48,27 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="smartBird.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ptr_unique.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ptrptr_type.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TheFactoryPattern.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WeatherData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

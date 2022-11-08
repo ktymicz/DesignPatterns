@@ -130,12 +130,23 @@
     <ClCompile Include="bird.cpp" />
     <ClCompile Include="DesignPatterns.cpp" />
     <ClCompile Include="human.cpp" />
+    <ClCompile Include="Observer.cpp" />
+    <ClCompile Include="ptrptr_type.cpp" />
     <ClCompile Include="smartBird.cpp" />
+    <ClCompile Include="TheFactoryPattern.cpp" />
+    <ClCompile Include="WeatherData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bird.h" />
+    <ClInclude Include="Header.h" />
     <ClInclude Include="human.h" />
+    <ClInclude Include="Observer.h" />
+    <ClInclude Include="ptrptr_type.h" />
+    <ClInclude Include="Ptr_unique.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="smartBird.h" />
+    <ClInclude Include="TheFactoryPattern.h" />
+    <ClInclude Include="WeatherData.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
