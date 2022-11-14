@@ -7,16 +7,54 @@
 #include "bird.h"
 #include "human.h"
 #include "smartBird.h"
+#include "FLTK_PPAP/Simple_window.h"
 
+// constants
+constexpr int width_window = 800;//1920/2;
+constexpr int height_window = 800;///1080/2;
+constexpr  int x_org = width_window / 2;
+constexpr  int y_org = height_window / 2;
+constexpr int dif_g = 100; // make axis smaller in graph
+constexpr  int x_length = width_window - dif_g;
+constexpr  int y_length = height_window - dif_g;
+constexpr int xscale = 50;
+constexpr int yscale = 10;
+const Graph_lib::Point orig{ x_org, y_org };
+
+const char* cbutton = "One Piece";
 void bird();
 void human();
 void smartbird();
+static void cb(Graph_lib::Address s, Graph_lib::Address addr);
 int main()
 {
+    std::string s = "The patterns";
     //bird();
     //human();
-    smartbird();
+    //smartbird();
+    Graph_lib::Simple_window win(orig, width_window, height_window, s);
+    Graph_lib::Box b(Graph_lib::Point(30, 30), 30, 30);
+    win.attach(b);
+
+
+    Graph_lib::Button but(Graph_lib::Point(60, 60), 100, 50, "wow", cb);
+    win.attach(but);
+    std::cout << "addr but: " << &but << '\n'
+        << "addr simple_win: " << &win << '\n'
+        << "win label:" << win.label() << '\n';
+    win.wait_for_button();
  }
+
+static void cb(Graph_lib::Address w, Graph_lib::Address addr) // callback for next_button
+//	{ reference_to<Simple_window>(addr).next(); }
+{
+    //static_cast<Graph_lib::Simple_window*>(addr);
+    std::cout << "Button widget: " << (static_cast<Fl_Widget*>(w)) << '\n'
+        << "simple_window??" << static_cast<Graph_lib::Simple_window*>(addr) << '\n';
+
+    static_cast<Fl_Widget*>(w)->label(cbutton);
+}
+
 
 void human()
 {
@@ -76,13 +114,3 @@ void bird()
 }
 
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

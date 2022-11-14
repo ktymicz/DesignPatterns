@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="FLTK">
+      <UniqueIdentifier>{d01fd3c3-4219-44e5-8416-1e85ffc6454a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DesignPatterns.cpp">
@@ -27,6 +30,27 @@
     <ClCompile Include="smartBird.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Observer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ptrptr_type.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TheFactoryPattern.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WeatherData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FLTK_PPAP\Graph.cpp">
+      <Filter>FLTK</Filter>
+    </ClCompile>
+    <ClCompile Include="FLTK_PPAP\GUI.cpp">
+      <Filter>FLTK</Filter>
+    </ClCompile>
+    <ClCompile Include="FLTK_PPAP\Window.cpp">
+      <Filter>FLTK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bird.h">
@@ -37,6 +61,57 @@
     </ClInclude>
     <ClInclude Include="smartBird.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ptr_unique.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ptrptr_type.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TheFactoryPattern.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WeatherData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FLTK_PPAP\fltk.h">
+      <Filter>FLTK</Filter>
+    </ClInclude>
+    <ClInclude Include="FLTK_PPAP\Graph.h">
+      <Filter>FLTK</Filter>
+    </ClInclude>
+    <ClInclude Include="FLTK_PPAP\Gui.h">
+      <Filter>FLTK</Filter>
+    </ClInclude>
+    <ClInclude Include="FLTK_PPAP\Matrix.h">
+      <Filter>FLTK</Filter>
+    </ClInclude>
+    <ClInclude Include="FLTK_PPAP\Matrix11.h">
+      <Filter>FLTK</Filter>
+    </ClInclude>
+    <ClInclude Include="FLTK_PPAP\MatrixIO.h">
+      <Filter>FLTK</Filter>
+    </ClInclude>
+    <ClInclude Include="FLTK_PPAP\MatrixIO11.h">
+      <Filter>FLTK</Filter>
+    </ClInclude>
+    <ClInclude Include="FLTK_PPAP\Point.h">
+      <Filter>FLTK</Filter>
+    </ClInclude>
+    <ClInclude Include="FLTK_PPAP\Simple_window.h">
+      <Filter>FLTK</Filter>
+    </ClInclude>
+    <ClInclude Include="FLTK_PPAP\std_lib_facilities.h">
+      <Filter>FLTK</Filter>
+    </ClInclude>
+    <ClInclude Include="FLTK_PPAP\Window.h">
+      <Filter>FLTK</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
