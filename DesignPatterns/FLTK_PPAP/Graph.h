@@ -1076,5 +1076,10 @@ public:
 //};
 
 
+class CountButton
+{
+public:
+	static void call_back() {};
+};
 }
 #endif
