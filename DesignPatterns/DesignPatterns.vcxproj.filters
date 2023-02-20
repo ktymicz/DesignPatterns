@@ -51,6 +51,15 @@
     <ClCompile Include="FLTK_PPAP\Window.cpp">
       <Filter>FLTK</Filter>
     </ClCompile>
+    <ClCompile Include="SimpleSingleton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Feeding.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TheCommandPatttern.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bird.h">
@@ -112,6 +121,15 @@
     </ClInclude>
     <ClInclude Include="FLTK_PPAP\Window.h">
       <Filter>FLTK</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleSingleton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Feeding.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TheCommandPatttern.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

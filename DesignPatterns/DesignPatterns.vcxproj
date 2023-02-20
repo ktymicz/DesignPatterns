@@ -135,18 +135,22 @@
   <ItemGroup>
     <ClCompile Include="bird.cpp" />
     <ClCompile Include="DesignPatterns.cpp" />
+    <ClCompile Include="Feeding.cpp" />
     <ClCompile Include="FLTK_PPAP\Graph.cpp" />
     <ClCompile Include="FLTK_PPAP\GUI.cpp" />
     <ClCompile Include="FLTK_PPAP\Window.cpp" />
     <ClCompile Include="human.cpp" />
     <ClCompile Include="Observer.cpp" />
     <ClCompile Include="ptrptr_type.cpp" />
+    <ClCompile Include="SimpleSingleton.cpp" />
     <ClCompile Include="smartBird.cpp" />
+    <ClCompile Include="TheCommandPatttern.cpp" />
     <ClCompile Include="TheFactoryPattern.cpp" />
     <ClCompile Include="WeatherData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bird.h" />
+    <ClInclude Include="Feeding.h" />
     <ClInclude Include="FLTK_PPAP\fltk.h" />
     <ClInclude Include="FLTK_PPAP\Graph.h" />
     <ClInclude Include="FLTK_PPAP\Gui.h" />
@@ -163,7 +167,9 @@
     <ClInclude Include="Observer.h" />
     <ClInclude Include="ptrptr_type.h" />
     <ClInclude Include="Ptr_unique.h" />
+    <ClInclude Include="SimpleSingleton.h" />
     <ClInclude Include="smartBird.h" />
+    <ClInclude Include="TheCommandPatttern.h" />
     <ClInclude Include="TheFactoryPattern.h" />
     <ClInclude Include="WeatherData.h" />
   </ItemGroup>

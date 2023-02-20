@@ -9,7 +9,13 @@
 #include "smartBird.h"
 #include "FLTK_PPAP/Simple_window.h"
 
-// constants
+
+#include "TheFactoryPattern.h"
+#include "SimpleSingleton.h"
+#include "TheCommandPatttern.h"
+#include "FLTK_PPAP/Simple_window.h"
+
+// constants for a window, 
 constexpr int width_window = 800;//1920/2;
 constexpr int height_window = 800;///1080/2;
 constexpr  int x_org = width_window / 2;
@@ -22,16 +28,66 @@ constexpr int yscale = 10;
 const Graph_lib::Point orig{ x_org, y_org };
 
 const char* cbutton = "One Piece";
+// functions
 void bird();
 void human();
 void smartbird();
+
 static void cb(Graph_lib::Address s, Graph_lib::Address addr);
+void use_cb();
+
+// Head first Design Patterns
+void use_FactoryPattern();
+void onlyOneInstance();
+void use_CommandPattern();
+
+
 int main()
 {
-    std::string s = "The patterns";
+    
     //bird();
     //human();
     //smartbird();
+    //use_cb();
+    //use_FactoryPattern();
+    //onlyOneInstance();
+    use_CommandPattern();
+ }
+
+void use_CommandPattern()
+{
+    using namespace CommandPattern;
+    RemoteControlTest::main("Hello The Command Pattern");
+
+}
+
+
+
+void onlyOneInstance()
+{
+    std::string st("hello, SIngleton here");
+    SimpleSingleton* b1 = SimpleSingleton::createSingleton();
+    SimpleSingleton* b2 = SimpleSingleton::createSingleton();
+    SimpleSingleton* b3 = SimpleSingleton::createSingleton();
+}
+void use_FactoryPattern()
+{
+    //TheFactoryPattern::NYCheesePizza s;
+    //s.prepare();
+    TheFactoryPattern::ChPizzaStore chstore;
+    using namespace TheFactoryPattern;
+    Pizza* s = chstore.orderPizza("cheese");
+    Pizza* chveggie = chstore.orderPizza("veggie");
+
+    NYPizzaStore nystore;
+    Pizza* nycheese = nystore.orderPizza("cheese");
+    
+    Pizza* nyveggie = nystore.orderPizza("veggie");
+}
+
+void use_cb()
+{
+    std::string s = "The patterns";
     Graph_lib::Simple_window win(orig, width_window, height_window, s);
     Graph_lib::Box b(Graph_lib::Point(30, 30), 30, 30);
     win.attach(b);
@@ -43,18 +99,23 @@ int main()
         << "addr simple_win: " << &win << '\n'
         << "win label:" << win.label() << '\n';
     win.wait_for_button();
- }
+}
+
 
 static void cb(Graph_lib::Address w, Graph_lib::Address addr) // callback for next_button
 //	{ reference_to<Simple_window>(addr).next(); }
 {
     //static_cast<Graph_lib::Simple_window*>(addr);
-    std::cout << "Button widget: " << (static_cast<Fl_Widget*>(w)) << '\n'
-        << "simple_window??" << static_cast<Graph_lib::Simple_window*>(addr) << '\n';
-
-    static_cast<Fl_Widget*>(w)->label(cbutton);
+    std::cout << static_cast<Fl_Widget*>(w)->label()<<":" << (static_cast<Fl_Widget*>(w)) << '\n'
+        << static_cast<Graph_lib::Simple_window*>(addr)->label() << ":" << static_cast<Graph_lib::Simple_window*>(addr) << '\n';
+    if (static_cast<Fl_Widget*>(w)->label() != cbutton)
+    {
+        std::cout << static_cast<Fl_Widget*>(w)->label() << " changed to " << cbutton << '\n';
+        static_cast<Fl_Widget*>(w)->label(cbutton);
+        
+    }
+        
 }
-
 
 void human()
 {

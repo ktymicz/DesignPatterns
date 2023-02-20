@@ -2,18 +2,136 @@
 #include <string>
 #include <iostream>
 #include <list>
+
+#include <algorithm>
+#include <memory>
+
 namespace TheFactoryPattern
 {
+	// Ingridients
+	struct Dough
+	{
+		std::string d{ "dough" };
+		/*friend std::ostream& operator<<(std::ostream& os, Dough& d);*/
+	};
+
+	struct ThinCrustDough : public Dough 
+	{
+		ThinCrustDough() { d = "thin crust dough"; };
+	};
+
+	struct ExtraThickCrustDough : public Dough 
+	{
+		ExtraThickCrustDough() { d = "extra thick crust dough"; }
+	};
+
+	struct Sauce 
+	{ std::string s{"sauce" }; };
+
+	struct MarinaraSauce : public Sauce
+	{
+		MarinaraSauce() { s = "marinara sauce"; }
+	};
+
+	struct PlumTomatoSauce : public Sauce
+	{
+		PlumTomatoSauce() { s = "plum tomato sauce"; }
+	};
+
+	struct Cheese 
+	{ std::string ch{"cheese"}; };
+
+	struct ReggianoCheese :public Cheese
+	{
+		ReggianoCheese() { ch = "reggiano cheese"; }
+	};
+
+	struct MozzarellaCheese : public Cheese 
+	{
+		MozzarellaCheese() { ch = "fresh real mozzarella cheese"; }
+	};
+
+	struct Veggies
+	{std::string v{"garlic, onion, mushroom, redpepper, olive"}; };
+
+	struct Pepperoni 
+	{ std::string p{"pepperoni"}; };
+	
+	struct SlicedPepperoni :public Pepperoni
+	{
+		SlicedPepperoni() { p = "sliced pepperoni"; }
+	};
+
+	struct Clams 
+	{ std::string cl{"clams"}; };
+	
+	struct FreshClams : public Clams
+	{
+		FreshClams() { cl = "fresh clams"; }
+	};
+
+	struct FrozenClams : public Clams
+	{
+		FrozenClams() { cl = "frozen clams"; }
+	};
+
+	class PizzaIngredientFactory
+	{
+	public:
+		PizzaIngredientFactory() = default;
+		PizzaIngredientFactory(const PizzaIngredientFactory& copy) = default;
+		PizzaIngredientFactory(PizzaIngredientFactory&& move) = default;
+		PizzaIngredientFactory& operator=(const PizzaIngredientFactory& copy) = default;
+		PizzaIngredientFactory& operator=(PizzaIngredientFactory&& move) = default;
+		virtual Dough createDough() { return Dough(); }
+		virtual Sauce createSauce() { return Sauce(); }
+		virtual Cheese createCheese() { return Cheese(); }
+		virtual Veggies createVeggies() { return Veggies(); }
+		virtual Pepperoni createPepperoni() { return Pepperoni(); }
+		virtual Clams createClam() { return Clams(); }
+	};
+
+	class NYPizzaIngredientFactory : public PizzaIngredientFactory 
+	{
+	public:
+		Dough createDough() override { return ThinCrustDough(); }
+		Sauce createSauce()override { return MarinaraSauce(); };
+		Cheese createCheese()override{ return ReggianoCheese(); };
+		// Veggies createVeggies()override { return Veggies(); };
+		Pepperoni createPepperoni()override { return SlicedPepperoni(); };
+		Clams createClam()override { return FreshClams(); };
+
+	};
+	class CHPizzaIngredientFactory : public PizzaIngredientFactory
+	{
+	public:
+		Dough createDough() override { return ExtraThickCrustDough(); }
+		Sauce createSauce()override { return PlumTomatoSauce(); };
+		Cheese createCheese()override { return MozzarellaCheese(); };
+		// Veggies createVeggies()override { return Veggies(); };
+		Pepperoni createPepperoni()override { return SlicedPepperoni(); };
+		Clams createClam()override { return FrozenClams(); };
+	};
+
+
 	class Pizza
 	{
-	private:
+	protected:
 		std::string nameo;
-		std::string sauceo;
-		std::string dougho;
+		Sauce sauceo;
+		Dough dougho;
+		Veggies veggieso;
+		Cheese cheeseo;
+		Pepperoni pepperonio;
+		Clams clamo;
+
 		std::list<std::string> toppingso;
 
 	public:
 		Pizza(std::string name, std::string sauce, std::string dough, std::list<std::string> toppings);
+
+		Pizza(std::string name);
+		Pizza() = default;
 
 		virtual void prepare() 
 		{ 
@@ -26,12 +144,16 @@ namespace TheFactoryPattern
 			std::cout << '\n';
 		}
 		void addTopping(std::string t) { toppingso.push_back(t); };
-		virtual void bake() { std::cout << "Bake for 15 minutes at 250C, " << '\n'; };
-		virtual void cut() { std::cout << "Cutting the pizza into diagonal slices" << '\n'; }
+
+		void bake() { std::cout << "Bake for 15 minutes at 250C, " << '\n'; };
+		void cut() { std::cout << "Cutting the pizza into diagonal slices" << '\n'; }
 		void box() { std::cout << "Place pizza in official PizzaStore box\n"; }
 		std::string getName() { return nameo; }
+		void setName(std::string name) { nameo = name; }
 		virtual ~Pizza() { std::cout << "Pizza obj destroyed\n"; }
 	};
+	
+	// The factory method is declered here, createPizza
 
 	class PizzaStore
 	{
@@ -69,36 +191,39 @@ namespace TheFactoryPattern
 		Pizza* createPizza(std::string type) override;
 	};
 
-// New York Pizza
-	class NYCheesePizza : public Pizza
+
+	// Cheese Pizza
+	class CheesePizza : public Pizza
 	{
+		 PizzaIngredientFactory* ingredientFactory;
+
 	public:
-		NYCheesePizza()
-			: Pizza( "NY Style Sauce and Cheese Pizza", 
-				"Marinara Sauce", "Thin Crust Dough", 
-				{ "t1", "t2" } )
-		{
-			addTopping("t3");
+		CheesePizza(PizzaIngredientFactory* pingredientFactory);
+		void prepare() override;
+		~CheesePizza() override {
+			std::cout << "CheesePizza obj destroyed\n";
+			delete ingredientFactory;
 		}
-		void bake() { std::cout << "Bake for 15 minutes at 250C, " << Pizza::getName() << '\n'; };			
-		~NYCheesePizza() override { std::cout << "NYCheesePizza obj destroyed\n"; }
 	}; 
 
-
-	class NYVeggiePizza : public Pizza
+	class VeggiePizza : public Pizza
 	{
+		PizzaIngredientFactory* ingredientFactory;
+
 	public:
-		NYVeggiePizza()
-			: Pizza("NY Style Sauce and Cheese Pizza",
-				"Marinara Sauce", "Thin Crust Dough",
-				{ "Veggie1", "Veggie2" })
+		VeggiePizza(PizzaIngredientFactory* pingredientFactory)
+			: Pizza(), ingredientFactory(pingredientFactory)
 		{
 			addTopping("Veggie3");
 		}
-		~NYVeggiePizza() override { std::cout << "NYVeggiePizza obj destroyed\n"; }
+		void prepare() override;
+		~VeggiePizza() override {
+			std::cout << "VeggiePizza obj destroyed\n";
+			delete ingredientFactory;
+		}
 	};
 
-	
+	// old design NY and CH, used in NYPizzaStore and ChPizzaStore ::createPizza(std::string type)
 	class NYClamPizza : public Pizza
 	{
 	public:
