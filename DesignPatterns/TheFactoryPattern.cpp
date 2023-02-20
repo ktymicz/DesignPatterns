@@ -18,6 +18,7 @@ namespace TheFactoryPattern
 			toppingso.push_back(t);
 	}
 
+
 	CheesePizza::CheesePizza(PizzaIngredientFactory* pingredientFactory)
 		: ingredientFactory(pingredientFactory)
 	{
@@ -58,6 +59,7 @@ namespace TheFactoryPattern
 		std::cout << '\n';
 	}
 
+
 	Pizza* PizzaStore::orderPizza(std::string type)
 	{
 		Pizza *ppizza = createPizza(type);
@@ -79,6 +81,7 @@ namespace TheFactoryPattern
 
 	Pizza* NYPizzaStore::createPizza(std::string type)
 	{
+
 		//std::shared_ptr<PizzaIngredientFactory> ingredientFactory =  WTF
 		// WTF std::make_shared<PizzaIngredientFactory>(NYPizzaIngredientFactory()); 
 		PizzaIngredientFactory * ingredientFactory = new NYPizzaIngredientFactory();
@@ -92,10 +95,12 @@ namespace TheFactoryPattern
 		{
 			ppizza = new VeggiePizza(ingredientFactory);
 			ppizza->setName(std::string("NY Style Veggie Pizza"));
+
 		}
 		else if (type == "clam")
 		{
 			ppizza = new NYClamPizza();
+
 			ppizza->setName(std::string("NY Style Old Clams Pizza"));
 		}
 		
@@ -107,6 +112,7 @@ namespace TheFactoryPattern
 
 	Pizza* ChPizzaStore::createPizza(std::string type)
 	{
+
 		PizzaIngredientFactory* ingredientFactory = new CHPizzaIngredientFactory();
 		Pizza* ppizza = nullptr;
 		if (type == "cheese")

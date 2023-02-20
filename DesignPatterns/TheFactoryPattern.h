@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <list>
+
 #include <algorithm>
 #include <memory>
 
@@ -123,12 +124,15 @@ namespace TheFactoryPattern
 		Cheese cheeseo;
 		Pepperoni pepperonio;
 		Clams clamo;
+
 		std::list<std::string> toppingso;
 
 	public:
 		Pizza(std::string name, std::string sauce, std::string dough, std::list<std::string> toppings);
+
 		Pizza(std::string name);
 		Pizza() = default;
+
 		virtual void prepare() 
 		{ 
 			std::cout << "Preparing " << nameo << '\n'
@@ -140,6 +144,7 @@ namespace TheFactoryPattern
 			std::cout << '\n';
 		}
 		void addTopping(std::string t) { toppingso.push_back(t); };
+
 		void bake() { std::cout << "Bake for 15 minutes at 250C, " << '\n'; };
 		void cut() { std::cout << "Cutting the pizza into diagonal slices" << '\n'; }
 		void box() { std::cout << "Place pizza in official PizzaStore box\n"; }
@@ -149,6 +154,7 @@ namespace TheFactoryPattern
 	};
 	
 	// The factory method is declered here, createPizza
+
 	class PizzaStore
 	{
 	private:
@@ -185,6 +191,7 @@ namespace TheFactoryPattern
 		Pizza* createPizza(std::string type) override;
 	};
 
+
 	// Cheese Pizza
 	class CheesePizza : public Pizza
 	{
@@ -198,7 +205,6 @@ namespace TheFactoryPattern
 			delete ingredientFactory;
 		}
 	}; 
-
 
 	class VeggiePizza : public Pizza
 	{
@@ -216,10 +222,6 @@ namespace TheFactoryPattern
 			delete ingredientFactory;
 		}
 	};
-
-
-
-
 
 	// old design NY and CH, used in NYPizzaStore and ChPizzaStore ::createPizza(std::string type)
 	class NYClamPizza : public Pizza
