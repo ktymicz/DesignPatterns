@@ -48,10 +48,10 @@ int main()
     //bird();
     //human();
     //smartbird();
-    //use_cb();
+    use_cb();
     //use_FactoryPattern();
     //onlyOneInstance();
-    use_CommandPattern();
+    //use_CommandPattern();
  }
 
 void use_CommandPattern()
